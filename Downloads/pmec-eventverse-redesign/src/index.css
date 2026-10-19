@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 60% 92%;
+    --foreground: 226 64% 15%;
+    --card: 40 100% 97%;
+    --card-foreground: 226 64% 15%;
+    --popover: 40 100% 97%;
+    --popover-foreground: 226 64% 15%;
+    --primary: 226 64% 15%;
+    --primary-foreground: 42 60% 92%;
+    --secondary: 7 73% 45%;
+    --secondary-foreground: 42 60% 92%;
+    --muted: 42 45% 86%;
+    --muted-foreground: 230 12% 36%;
+    --accent: 42 90% 57%;
+    --accent-foreground: 226 64% 15%;
+    --destructive: 7 73% 45%;
+    --destructive-foreground: 42 60% 92%;
+    --border: 226 64% 15%;
+    --input: 226 64% 15%;
+    --ring: 227 70% 40%;
+    --radius: 0rem;
+  }
+
+  * { @apply border-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4 { @apply font-display uppercase; }
+
+  ::selection { background: #f4b82e; color: #0e1a40; }
+
+  :focus-visible { outline: 3px solid #1f3fae; outline-offset: 2px; }
+}
+
+@layer components {
+  /* thick-ink "pattachitra" panel with hard offset shadow */
+  .panel {
+    @apply bg-paper border-2 border-ink shadow-block;
+  }
+
+  .eyebrow {
+    @apply font-display font-extrabold uppercase tracking-[0.22em] text-sm text-pata;
+  }
+
+  .odia {
+    @apply font-odia font-bold;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-ink px-6 py-3
+           font-display font-extrabold uppercase tracking-[0.14em] text-base
+           transition-transform duration-150 select-none
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0;
+  }
+  .btn-ink   { @apply btn bg-ink text-chalk shadow-[4px_4px_0_0_#f4b82e] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none; }
+  .btn-pata  { @apply btn bg-pata text-chalk shadow-block-sm hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none; }
+  .btn-haldi { @apply btn bg-haldi text-ink shadow-block-sm hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none; }
+  .btn-line  { @apply btn bg-transparent text-ink hover:bg-ink hover:text-chalk; }
+
+  .field {
+    @apply w-full border-2 border-ink bg-paper px-3.5 py-3 text-ink placeholder:text-mute/70
+           focus:outline-none focus:shadow-[4px_4px_0_0_#1f3fae] focus:-translate-x-0.5 focus:-translate-y-0.5 transition-all;
+  }
+  .label {
+    @apply block mb-1.5 font-display font-extrabold uppercase tracking-[0.16em] text-[13px] text-ink;
+  }
+
+  /* diagonal stripe divider */
+  .stripes {
+    background-image: repeating-linear-gradient(-45deg, #0e1a40 0 6px, transparent 6px 14px);
+  }
+
+  /* kolam-style dotted rule */
+  .dots {
+    background-image: radial-gradient(#0e1a40 1.4px, transparent 1.6px);
+    background-size: 12px 12px;
+  }
+
+  .paper-grain {
+    background-image:
+      radial-gradient(rgba(14,26,64,.05) 1px, transparent 1.2px),
+      radial-gradient(rgba(14,26,64,.04) 1px, transparent 1.2px);
+    background-size: 22px 22px, 37px 37px;
+    background-position: 0 0, 11px 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
